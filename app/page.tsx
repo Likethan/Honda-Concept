@@ -2,6 +2,7 @@ import Hero from '@/components/Hero';
 import EditorialIntro from '@/components/EditorialIntro';
 import EngineeringSection from '@/components/EngineeringSection';
 import PowertrainDiagram from '@/components/PowertrainDiagram';
+import MechanicalSubsystems from '@/components/MechanicalSubsystems';
 import CabinSection from '@/components/CabinSection';
 import DetailGallery from '@/components/DetailGallery';
 import SpecMatrix from '@/components/SpecMatrix';
@@ -14,6 +15,7 @@ export default function Home() {
       <EditorialIntro />
       <EngineeringSection />
       <PowertrainDiagram />
+      <MechanicalSubsystems />
       <CabinSection />
       <DetailGallery />
       <SpecMatrix />

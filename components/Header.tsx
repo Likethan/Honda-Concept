@@ -18,7 +18,7 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    const sectionIds = ['platform', 'powertrain', 'cabin', 'specifications', 'evolution'];
+    const sectionIds = ['platform', 'engineering', 'powertrain', 'subsystems', 'cabin', 'details', 'specifications', 'evolution'];
     const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -44,9 +44,12 @@ export default function Header() {
 
   const navItems = [
     { href: '#platform', id: 'platform', label: '01 PLATFORM' },
-    { href: '#powertrain', id: 'powertrain', label: '02 POWERTRAIN' },
-    { href: '#cabin', id: 'cabin', label: '03 CABIN' },
-    { href: '#specifications', id: 'specifications', label: '04 SPECIFICATIONS' },
+    { href: '#engineering', id: 'engineering', label: '02 ENGINEERING' },
+    { href: '#powertrain', id: 'powertrain', label: '03 POWERTRAIN' },
+    { href: '#subsystems', id: 'subsystems', label: '04 SUBSYSTEMS' },
+    { href: '#cabin', id: 'cabin', label: '05 CABIN' },
+    { href: '#details', id: 'details', label: '06 DETAILS' },
+    { href: '#specifications', id: 'specifications', label: '07 SPECS' },
   ];
 
   return (
