@@ -923,6 +923,55 @@ code, pre, .mono, .technical-label, .spec-data {
   gap: 1.25rem;
 }
 
+.engineering-view-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  padding: 0.35rem;
+}
+
+.eng-selector-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.45rem 0.65rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all var(--transition-fast);
+  letter-spacing: 0.04em;
+}
+
+.eng-selector-btn:hover {
+  color: var(--text);
+  background-color: var(--surface-dim);
+  border-color: rgba(244, 242, 236, 0.12);
+}
+
+.eng-selector-btn.active {
+  color: var(--text);
+  background-color: #121214;
+  border-color: var(--accent);
+}
+
+.eng-btn-num {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.eng-selector-btn.active .eng-btn-num {
+  color: #ff523d;
+}
+
+.eng-btn-text {
+  font-weight: 500;
+}
+
 .aspect-box {
   position: relative;
   width: 100%;

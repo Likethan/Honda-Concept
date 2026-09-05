@@ -1,7 +1,60 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Image from 'next/image';
 
+const ENGINEERING_VIEWS = [
+  {
+    id: 'exterior',
+    tag: 'FIG 2.1',
+    label: '01 PROFILE & AERO',
+    title: 'WEDGE AERODYNAMICS & LOW-COWL PROFILE',
+    chassis: 'CM5/CM6 CHASSIS',
+    src: '/images/engineering/accord-exterior.jpg',
+    alt: 'Honda Accord 7th Gen 2003 front quarter dynamic view showing wedge profile and double-wishbone architecture',
+  },
+  {
+    id: 'engine',
+    tag: 'FIG 2.2',
+    label: '02 K24A4 ENGINE',
+    title: 'K24A4 2.4L DOHC i-VTEC VALVETRAIN CUTAWAY',
+    chassis: '2,354 CC DOHC i-VTEC',
+    src: '/images/mechanical/k24a4-engine.jpg',
+    alt: 'Honda K24A4 2.4L DOHC i-VTEC engine technical cutaway with camshafts, timing chain, and i-VTEC mechanism callouts',
+  },
+  {
+    id: 'driveshaft',
+    tag: 'FIG 2.3',
+    label: '03 DRIVESHAFT & AXLE',
+    title: 'FWD EQUAL-LENGTH DRIVESHAFT & CV AXLES',
+    chassis: '28T / 32T SPLINED STEEL',
+    src: '/images/mechanical/driveshaft-halfshaft.jpg',
+    alt: '2003 Honda Accord CM5 front-wheel-drive driveshafts, constant velocity joints, and splined axle assembly',
+  },
+  {
+    id: 'suspension',
+    tag: 'FIG 2.4',
+    label: '04 SUSPENSION & BRAKES',
+    title: 'FRONT DOUBLE-WISHBONE & DISC BRAKE SYSTEM',
+    chassis: 'FORGED ALLOY A-ARM',
+    src: '/images/mechanical/double-wishbone-suspension.jpg',
+    alt: 'Race-derived front double-wishbone suspension assembly with forged aluminum upper wishbone, coilover damper, and disc brake caliper',
+  },
+  {
+    id: 'chassis',
+    tag: 'FIG 2.5',
+    label: '05 CHASSIS BLUEPRINT',
+    title: 'HIGH-TENSILE STEEL MONOCOQUE BLUEPRINT',
+    chassis: '+27% TORSIONAL RIGIDITY',
+    src: '/images/mechanical/chassis-architecture.jpg',
+    alt: '2003 Honda Accord CM5 high-tensile steel monocoque chassis blueprint showing hydroformed front rails, laser-welded B-pillars and rear subframe',
+  },
+];
+
 export default function EngineeringSection() {
+  const [activeViewIndex, setActiveViewIndex] = useState(0);
+  const currentView = ENGINEERING_VIEWS[activeViewIndex];
+
   return (
     <section id="engineering" className="section engineering-section">
       <div className="container">
@@ -19,22 +72,41 @@ export default function EngineeringSection() {
         <div className="engineering-grid">
           {/* Left: Large Technical Photo Frame */}
           <div className="media-column">
+            {/* Engineering Media View Tabs */}
+            <div className="engineering-view-selector" role="tablist" aria-label="Engineering Media Selector">
+              {ENGINEERING_VIEWS.map((view, index) => (
+                <button
+                  key={view.id}
+                  role="tab"
+                  aria-selected={activeViewIndex === index}
+                  className={`eng-selector-btn ${activeViewIndex === index ? 'active' : ''}`}
+                  onClick={() => setActiveViewIndex(index)}
+                  type="button"
+                >
+                  <span className="eng-btn-num">[{String(index + 1).padStart(2, '0')}]</span>
+                  <span className="eng-btn-text">{view.label.replace(/^\d+\s*/, '')}</span>
+                </button>
+              ))}
+            </div>
+
             <div className="image-technical-frame">
               <div className="aspect-box">
                 <Image
-                  src="/images/engineering/accord-exterior.jpg"
-                  alt="Honda Accord 7th Gen 2003 front quarter dynamic view showing wedge profile and double-wishbone architecture"
+                  key={currentView.src}
+                  src={currentView.src}
+                  alt={currentView.alt}
                   width={1280}
                   height={850}
                   className="engineering-photo"
+                  priority={activeViewIndex === 0}
                 />
               </div>
               <div className="image-caption-bar">
                 <span>
-                  <span className="image-caption-tag">FIG 2.1</span>
-                  WEDGE AERODYNAMICS & LOW-COWL PROFILE
+                  <span className="image-caption-tag">{currentView.tag}</span>
+                  {currentView.title}
                 </span>
-                <span>CM5/CM6 CHASSIS</span>
+                <span>{currentView.chassis}</span>
               </div>
             </div>
 
